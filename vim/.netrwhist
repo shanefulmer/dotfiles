@@ -1,10 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/Users/shanefulmer/Projects/mathvine/mathvine.content/content'
-let g:netrw_dirhist_2='/Users/shanefulmer/Projects/mathvine/mathvine.content'
-let g:netrw_dirhist_3='/Users/shanefulmer/Projects/mathvine/mathvine.content/build'
-let g:netrw_dirhist_4='/Users/shanefulmer/Projects/mathvine/mathvine.content/build/partials'
-let g:netrw_dirhist_5='/Users/shanefulmer/Projects/mathvine/mathvine.content/build'
-let g:netrw_dirhist_6='/Users/shanefulmer/Projects/mathvine/mathvine.content/build/templates'
-let g:netrw_dirhist_7='/Users/shanefulmer/dotfiles'
-let g:netrw_dirhist_8='/Users/shanefulmer'
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/Users/shanefulmer/.tmux'
+let g:netrw_dirhist_2='/Users/shanefulmer/dotfiles'
+let g:netrw_dirhist_3='/Users/shanefulmer'
+let g:netrw_dirhist_4='/Users/shanefulmer/dotfiles'
+let g:netrw_dirhist_5='/Users/shanefulmer'
+let g:netrw_dirhist_6='/Users/shanefulmer/dotfiles'
