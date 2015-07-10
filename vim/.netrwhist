@@ -1,9 +1,4 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/Users/shanefulmer/dotfiles/vim/bundle'
-let g:netrw_dirhist_2='/Users/shanefulmer/dotfiles/vim/bundle/vim-colorschemes'
-let g:netrw_dirhist_3='/Users/shanefulmer/dotfiles/vim/bundle'
-let g:netrw_dirhist_4='/Users/shanefulmer/dotfiles/vim/bundle/vundle'
-let g:netrw_dirhist_5='/Users/shanefulmer/dotfiles/vim/bundle'
-let g:netrw_dirhist_6='/Users/shanefulmer/dotfiles/vim'
-let g:netrw_dirhist_7='/Users/shanefulmer/dotfiles'
+let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_1='/Users/shanefulmer/Projects/plunge-project/build'
+let g:netrw_dirhist_2='/Users/shanefulmer/Projects/plunge-project/build/content'

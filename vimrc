@@ -8,11 +8,25 @@ Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
 Bundle 'rking/ag.vim'
 Bundle 'christoomey/vim-tmux-navigator'
+" Bundle 'klen/python-mode'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'Raimondi/delimitMate'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'janko-m/vim-test'
+Plugin 'tpope/vim-vinegar'
+" Plugin 'Shougo/unite.vim'
+" Plugin 'davidhalter/jedi-vim'
+
+" turn off python-mode rope in favor of jedi-vim
+" let g:pymode_rope = 0
+"
+
+set noerrorbells visualbell t_vb=
+if has('autocmd')
+  autocmd GUIEnter * set visualbell t_vb=
+endif
 
 " Remove delay when pressing ESC
 set timeoutlen=1000 ttimeoutlen=0
@@ -20,7 +34,7 @@ set timeoutlen=1000 ttimeoutlen=0
 filetype plugin indent on
 
 " clear the search buffer when hitting return
-nnoremap <CR> :nohlsearch<cr>
+"nnoremap <CR> :nohlsearch<cr>
 
 let loaded_matchparen = 1
 
@@ -40,8 +54,20 @@ let mapleader=","
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 
+"nnoremap <leader>r <esc>:w:!clear;python %<CR>
+"nnoremap <silent> <F5> :!clear;python3 %<CR>
+"nnoremap <silent> <leader>r :!clear;python3 %<CR>
+"nnoremap <silent> <leader>e :!clear;node %<CR>
+
+" vim-test mappings
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
+
 au FileType qf wincmd J
-autocmd BufWritePost .vimrc so %
+"autocmd BufWritePost .vimrc so %
 
 set noshowmatch
 set nobackup
@@ -54,7 +80,7 @@ set showtabline=0
 map ; :
 
 noremap H ^
-noremap L g_
+noremap L $
 
 " completely disable arrow keys
 map <up> <nop>
@@ -98,7 +124,7 @@ set guifont=Menlo\ Regular:h16
 "set expandtab
 
 " very handy! keeps working directory up to date
-"set autochdir
+set autochdir
 "
 "set ai " autoindent
 
@@ -130,14 +156,14 @@ autocmd FileType cs set sts=4
 """ Highlight cursor
 ""highlight CursorLine ctermbg=8 cterm=NONE
 "
-"let g:ctrlp_root_markers = ['.ctrlp']
-"let g:ctrlp_working_path_mode = 'r'
-"let g:ctrlp_custom_ignore = {
-"  \ 'dir':  '\v[\/](.git|.hg|.svn|node_modules)$',
-"  \ 'file': '\v\.(exe|so|dll|class|zip|jar|xsb)$',
-"  \ 'link': 'some_bad_symbolic_links',
-"  \ }
-"
+let g:ctrlp_root_markers = ['.ctrlp']
+let g:ctrlp_working_path_mode = 'r'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](.git|.hg|.svn|node_modules)$',
+  \ 'file': '\v\.(exe|so|dll|class|zip|jar|xsb)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+
 "
 "function! CloseHiddenBuffers()
 "    " Tableau pour memoriser la visibilite des buffers                                                                                      
@@ -165,3 +191,67 @@ autocmd FileType cs set sts=4
 "fun! EditProjectDir()
 "  return ':e '.ProjectRootGuess().'/'
 "endf
+
+let g:netrw_liststyle=0         " thin (change to 3 for tree)
+let g:netrw_banner=1            " no banner
+"let g:netrw_altv=1              " open files on right
+let g:netrw_preview=1           " open previews vertically
+let g:netrw_sort_sequence = '[\/]$,*'
+
+" absolute width of netrw window
+ let g:netrw_winsize = -28
+" " tree-view
+" let g:netrw_liststyle = 3
+"
+" " use the previous window to open file
+" let g:netrw_browse_split = 4
+"
+" Allow netrw to remove non-empty local directories
+"
+let g:netrw_localrmdir='rm -r'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""" RUN CURRENT FILE """""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Execute current file
+nnoremap <leader>r :call ExecuteFile()<CR>
+
+" Will attempt to execute the current file based on the `&filetype`
+" You need to manually map the filetypes you use most commonly to the
+" correct shell command.
+function! ExecuteFile()
+	let filetype_to_command = {
+		\   'javascript': 'node',
+		\   'python': 'python3',
+		\   'html': 'open',
+		\   'sh': 'sh'
+		\ }
+	let cmd = get(filetype_to_command, &filetype, &filetype)
+	call RunShellCommand(cmd." %s")
+endfunction
+
+" Enter any shell command and have the output appear in a new buffer
+" For example, to word count the current file:
+"
+"   :Shell wc %s
+"
+" Thanks to: http://vim.wikia.com/wiki/Display_output_of_shell_commands_in_new_window
+command! -complete=shellcmd -nargs=+ Shell call RunShellCommand(<q-args>)
+function! RunShellCommand(cmdline)
+	echo a:cmdline
+	let expanded_cmdline = a:cmdline
+	for part in split(a:cmdline, ' ')
+		if part[0] =~ '\v[%#<]'
+			let expanded_part = fnameescape(expand(part))
+			let expanded_cmdline = substitute(expanded_cmdline, part, expanded_part, '')
+		endif
+	endfor
+	botright new
+	setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
+	call setline(1, 'You entered:    ' . a:cmdline)
+	call setline(2, 'Expanded Form:  ' .expanded_cmdline)
+	call setline(3,substitute(getline(2),'.','=','g'))
+	execute '$read !'. expanded_cmdline
+	setlocal nomodifiable
+	1
+endfunction
