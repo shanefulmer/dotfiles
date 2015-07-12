@@ -138,6 +138,10 @@ autocmd FileType javascript set sw=4
 autocmd FileType javascript set ts=4
 autocmd FileType javascript set sts=4
 
+autocmd FileType python set sw=4
+autocmd FileType python set ts=4
+autocmd FileType python set sts=4
+
 autocmd FileType html set sw=4
 autocmd FileType html set ts=4
 autocmd FileType html set sts=4
