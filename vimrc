@@ -11,7 +11,6 @@ Bundle 'christoomey/vim-tmux-navigator'
 " Bundle 'klen/python-mode'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
-Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'Raimondi/delimitMate'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'janko-m/vim-test'
@@ -121,7 +120,7 @@ set synmaxcol=200
 set guifont=Menlo\ Regular:h16
 "set cindent
 
-"set expandtab
+set expandtab
 
 " very handy! keeps working directory up to date
 set autochdir

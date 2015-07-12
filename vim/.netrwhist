@@ -1,4 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
-let g:netrw_dirhist_1='/Users/shanefulmer/Projects/plunge-project/build'
-let g:netrw_dirhist_2='/Users/shanefulmer/Projects/plunge-project/build/content'
+let g:netrw_dirhist_cnt =0
