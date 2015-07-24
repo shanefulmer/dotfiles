@@ -8,15 +8,46 @@ Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
 Bundle 'rking/ag.vim'
 Bundle 'christoomey/vim-tmux-navigator'
-" Bundle 'klen/python-mode'
+Bundle 'klen/python-mode'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
 Plugin 'Raimondi/delimitMate'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'janko-m/vim-test'
 Plugin 'tpope/vim-vinegar'
-" Plugin 'Shougo/unite.vim'
-" Plugin 'davidhalter/jedi-vim'
+Plugin 'davidhalter/jedi-vim'
+
+
+" Python-mode
+"
+
+let g:pymode_rope = 0
+let g:pymode_python = 'python3'
+
+" No automatic code folding
+let g:pymode_folding = 0
+
+let g:pymode_lint = 1
+let g:pymode_lint_write = 1
+let g:pymode_run = 0
+
+let g:pymode_options_max_line_length = 120
+
+"let g:jedi#force_py_version = 3
+let g:jedi#rename_command = ""
+
+
+" in python, this turns off the annoying pop up when
+" using autocompletion
+set completeopt=menu
+
+
+set nocompatible
+filetype plugin on
+runtime macros/matchit.vim
+
+set ignorecase
+set smartcase
 
 " turn off python-mode rope in favor of jedi-vim
 " let g:pymode_rope = 0
@@ -217,7 +248,7 @@ let g:netrw_localrmdir='rm -r'
 """""""""""""""""""""""""" RUN CURRENT FILE """""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Execute current file
-nnoremap <leader>r :call ExecuteFile()<CR>
+nmap <leader>r :call ExecuteFile()<CR>
 
 " Will attempt to execute the current file based on the `&filetype`
 " You need to manually map the filetypes you use most commonly to the
