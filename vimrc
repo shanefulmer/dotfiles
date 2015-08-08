@@ -6,41 +6,28 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
-Bundle 'rking/ag.vim'
+"Bundle 'rking/ag.vim'
 Bundle 'christoomey/vim-tmux-navigator'
-Bundle 'klen/python-mode'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
-Plugin 'Raimondi/delimitMate'
+"Plugin 'Raimondi/delimitMate'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'janko-m/vim-test'
 Plugin 'tpope/vim-vinegar'
+
 Plugin 'davidhalter/jedi-vim'
 
+" What are the python things I actually need?
+" - at least simple completion (probably across languages) - YouCompleteMe?
+" - syntax checking (probably across languages) - Syntastic
+" - snippets (across languages) - Snipmate?
+" - debugging support
+" - Fugitive
+" - Project search - Ack - is there something newer?
 
-" Python-mode
-"
-
-let g:pymode_rope = 0
-let g:pymode_python = 'python3'
-
-" No automatic code folding
-let g:pymode_folding = 0
-
-let g:pymode_lint = 1
-let g:pymode_lint_write = 1
-let g:pymode_run = 0
-
-let g:pymode_options_max_line_length = 120
-
-"let g:jedi#force_py_version = 3
 let g:jedi#rename_command = ""
-
-
-" in python, this turns off the annoying pop up when
-" using autocompletion
-set completeopt=menu
-
+let g:jedi#popup_on_dot = 0
+let g:jedi#show_call_signatures = 0 
 
 set nocompatible
 filetype plugin on
@@ -48,10 +35,6 @@ runtime macros/matchit.vim
 
 set ignorecase
 set smartcase
-
-" turn off python-mode rope in favor of jedi-vim
-" let g:pymode_rope = 0
-"
 
 set noerrorbells visualbell t_vb=
 if has('autocmd')
