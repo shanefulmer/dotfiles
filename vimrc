@@ -9,13 +9,17 @@ Bundle 'kien/ctrlp.vim'
 "Bundle 'rking/ag.vim'
 Bundle 'christoomey/vim-tmux-navigator'
 Plugin 'jelera/vim-javascript-syntax'
-Plugin 'pangloss/vim-javascript'
 "Plugin 'Raimondi/delimitMate'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'janko-m/vim-test'
 Plugin 'tpope/vim-vinegar'
 
 Plugin 'davidhalter/jedi-vim'
+
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+
+Plugin 'tpope/vim-sleuth'
 
 " What are the python things I actually need?
 " - at least simple completion (probably across languages) - YouCompleteMe?
@@ -24,6 +28,8 @@ Plugin 'davidhalter/jedi-vim'
 " - debugging support
 " - Fugitive
 " - Project search - Ack - is there something newer?
+
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 let g:jedi#rename_command = ""
 let g:jedi#popup_on_dot = 0
@@ -147,9 +153,9 @@ set autochdir
 "" JavaScript (tabs = 4, lines = 79)
 
 "autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType javascript set sw=4
-autocmd FileType javascript set ts=4
-autocmd FileType javascript set sts=4
+"autocmd FileType javascript set sw=4
+"autocmd FileType javascript set ts=4
+"autocmd FileType javascript set sts=4
 
 autocmd FileType python set sw=4
 autocmd FileType python set ts=4
