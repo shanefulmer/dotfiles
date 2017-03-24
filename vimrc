@@ -12,10 +12,15 @@ Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
 "Plugin 'Raimondi/delimitMate'
 Plugin 'flazz/vim-colorschemes'
-Plugin 'janko-m/vim-test'
+"Plugin 'janko-m/vim-test'
 Plugin 'tpope/vim-vinegar'
+"Plugin 'Chiel92/vim-autoformat'
 
-Plugin 'davidhalter/jedi-vim'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'letientai299/vim-react-snippets', { 'branch': 'es6' }
+
+"Plugin 'davidhalter/jedi-vim'
 
 " What are the python things I actually need?
 " - at least simple completion (probably across languages) - YouCompleteMe?
@@ -25,9 +30,9 @@ Plugin 'davidhalter/jedi-vim'
 " - Fugitive
 " - Project search - Ack - is there something newer?
 
-let g:jedi#rename_command = ""
-let g:jedi#popup_on_dot = 0
-let g:jedi#show_call_signatures = 0 
+"let g:jedi#rename_command = ""
+"let g:jedi#popup_on_dot = 0
+"let g:jedi#show_call_signatures = 0 
 
 set nocompatible
 filetype plugin on
@@ -42,7 +47,7 @@ if has('autocmd')
 endif
 
 " Remove delay when pressing ESC
-set timeoutlen=1000 ttimeoutlen=0
+set timeoutlen=100 ttimeoutlen=0
 
 filetype plugin indent on
 
@@ -73,11 +78,11 @@ nmap <silent> <leader>ev :e $MYVIMRC<CR>
 "nnoremap <silent> <leader>e :!clear;node %<CR>
 
 " vim-test mappings
-nmap <silent> <leader>t :TestNearest<CR>
-nmap <silent> <leader>T :TestFile<CR>
-nmap <silent> <leader>a :TestSuite<CR>
-nmap <silent> <leader>l :TestLast<CR>
-nmap <silent> <leader>g :TestVisit<CR>
+"nmap <silent> <leader>t :TestNearest<CR>
+"nmap <silent> <leader>T :TestFile<CR>
+"nmap <silent> <leader>a :TestSuite<CR>
+"nmap <silent> <leader>l :TestLast<CR>
+"nmap <silent> <leader>g :TestVisit<CR>
 
 au FileType qf wincmd J
 "autocmd BufWritePost .vimrc so %
@@ -122,9 +127,6 @@ set go-=L
 set incsearch
 set hlsearch
 
-" set .md as a valid extension for markdown syntax highlighting
-"au BufRead,BufNewFile *.md set filetype=markdown
-
 " call JSHint when I save js files
 "au BufWritePost *.js :JSHint
 
@@ -162,6 +164,11 @@ autocmd FileType html set sts=4
 autocmd FileType cs set sw=4
 autocmd FileType cs set ts=4
 autocmd FileType cs set sts=4
+"
+" set .md as a valid extension for markdown syntax highlighting
+au BufRead,BufNewFile *.md set filetype=markdown
+autocmd FileType markdown setlocal shiftwidth=2 tabstop=2
+
  
 "" Highlight current line only in insert mode
 ""autocmd InsertLeave * set nocursorline
