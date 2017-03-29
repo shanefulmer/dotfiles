@@ -19,6 +19,15 @@ Plugin 'davidhalter/jedi-vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 
+" Snippets
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'isRuslan/vim-es6'
+
+Plugin 'mattn/emmet-vim'
+
+Plugin 'Raimondi/delimitMate'
+
 Plugin 'tpope/vim-sleuth'
 
 " What are the python things I actually need?
@@ -28,6 +37,11 @@ Plugin 'tpope/vim-sleuth'
 " - debugging support
 " - Fugitive
 " - Project search - Ack - is there something newer?
+
+" Snippets Config
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
@@ -84,6 +98,9 @@ nmap <silent> <leader>T :TestFile<CR>
 nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
+
+" https://oli.me.uk/2013/06/29/equipping-vim-for-javascript/
+imap <C-c> <CR><Esc>O
 
 au FileType qf wincmd J
 "autocmd BufWritePost .vimrc so %
@@ -168,7 +185,7 @@ autocmd FileType html set sts=4
 autocmd FileType cs set sw=4
 autocmd FileType cs set ts=4
 autocmd FileType cs set sts=4
- 
+
 "" Highlight current line only in insert mode
 ""autocmd InsertLeave * set nocursorline
 ""autocmd InsertEnter * set cursorline
@@ -187,6 +204,13 @@ let g:ctrlp_custom_ignore = {
   \ 'link': 'some_bad_symbolic_links',
   \ }
 
+let g:user_emmet_settings = {
+  \  'javascript.jsx' : {
+  \      'extends' : 'jsx',
+  \  },
+  \}
+
+let g:user_emmet_leader_key='<C-Z>'
 "
 "function! CloseHiddenBuffers()
 "    " Tableau pour memoriser la visibilite des buffers                                                                                      
