@@ -1,9 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/home/vagrant/worksheets-react/src'
-let g:netrw_dirhist_2='/home/vagrant/worksheets-react'
-let g:netrw_dirhist_3='/home/vagrant'
-let g:netrw_dirhist_4='/home/vagrant/mathvine.content'
-let g:netrw_dirhist_5='/home/vagrant/worksheets-react'
-let g:netrw_dirhist_6='/home/vagrant'
-let g:netrw_dirhist_7='/home/vagrant/worksheets-react/src'
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/vagrant'
+let g:netrw_dirhist_2='/home/vagrant/mathvine.renderers.react'
+let g:netrw_dirhist_3='/home/vagrant/hna-next/node_modules/ajv/dist'
+let g:netrw_dirhist_4='/home/vagrant/hna-next/node_modules/ajv'
