@@ -152,7 +152,7 @@ set hlsearch
 "au BufWritePost *.js :JSHint
 
 " fix issues with long lines
-set synmaxcol=500
+set synmaxcol=300
 
 set guifont=Menlo\ Regular:h16
 "set cindent
