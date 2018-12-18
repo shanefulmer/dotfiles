@@ -199,7 +199,7 @@ autocmd FileType cs set sts=4
 let g:ctrlp_root_markers = ['.ctrlp']
 let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](.git|.hg|.svn|node_modules)$',
+  \ 'dir':  '\v[\/](.git|.hg|.svn|node_modules|zips|us-cities-small)$',
   \ 'file': '\v\.(exe|so|dll|class|zip|jar|xsb)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
@@ -303,6 +303,7 @@ function! RunShellCommand(cmdline)
 	1
 endfunction
 
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 " The Silver Searcher
 if executable('ag')
   " Use ag over grep
