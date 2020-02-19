@@ -1,50 +1,27 @@
-" vundle configuration
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" vim-plug
+call plug#begin()
 
-Bundle 'gmarik/vundle'
-Bundle 'kien/ctrlp.vim'
-"Bundle 'rking/ag.vim'
-Bundle 'christoomey/vim-tmux-navigator'
-Plugin 'jelera/vim-javascript-syntax'
-"Plugin 'Raimondi/delimitMate'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'janko-m/vim-test'
-Plugin 'tpope/vim-vinegar'
+"Bundle 'christoomey/vim-tmux-navigator'
 
-Plugin 'davidhalter/jedi-vim'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'flazz/vim-colorschemes'
+Plug 'tpope/vim-vinegar'
+Plug 'davidhalter/jedi-vim'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'tpope/vim-sleuth'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-rooter'
+Plug 'Raimondi/delimitMate'
 
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
+call plug#end()
 
-" Snippets
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'isRuslan/vim-es6'
 
-Plugin 'mattn/emmet-vim'
-
-Plugin 'Raimondi/delimitMate'
-
-Plugin 'tpope/vim-sleuth'
-
-" What are the python things I actually need?
-" - at least simple completion (probably across languages) - YouCompleteMe?
-" - syntax checking (probably across languages) - Syntastic
-" - snippets (across languages) - Snipmate?
-" - debugging support
-" - Fugitive
-" - Project search - Ack - is there something newer?
-
-" Snippets Config
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" stop vim-rooter from echoing the directory
+let g:rooter_silent_chdir = 1
 
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
-
 let g:jedi#rename_command = ""
 let g:jedi#popup_on_dot = 0
 let g:jedi#show_call_signatures = 0 
@@ -71,9 +48,6 @@ filetype plugin indent on
 
 let loaded_matchparen = 1
 
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-
 "Remove toolbar
 set go-=T
 
@@ -84,26 +58,23 @@ colorscheme molokai
 
 let mapleader=","
 
+
+" fzf config
+nmap <Leader>t :Files<CR>
+
 " Quickly edit/reload the vimrc file
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
+"nmap <silent> <leader>ev :e $MYVIMRC<CR>
 
 "nnoremap <leader>r <esc>:w:!clear;python %<CR>
 "nnoremap <silent> <F5> :!clear;python3 %<CR>
 "nnoremap <silent> <leader>r :!clear;python3 %<CR>
 "nnoremap <silent> <leader>e :!clear;node %<CR>
 
-" vim-test mappings
-nmap <silent> <leader>t :TestNearest<CR>
-nmap <silent> <leader>T :TestFile<CR>
-nmap <silent> <leader>a :TestSuite<CR>
-nmap <silent> <leader>l :TestLast<CR>
-nmap <silent> <leader>g :TestVisit<CR>
 
 " https://oli.me.uk/2013/06/29/equipping-vim-for-javascript/
 imap <C-c> <CR><Esc>O
 
 au FileType qf wincmd J
-"autocmd BufWritePost .vimrc so %
 
 set noshowmatch
 set nobackup
@@ -186,62 +157,8 @@ autocmd FileType cs set sw=4
 autocmd FileType cs set ts=4
 autocmd FileType cs set sts=4
 
-"" Highlight current line only in insert mode
-""autocmd InsertLeave * set nocursorline
-""autocmd InsertEnter * set cursorline
-"" 
-""" Makefiles require TAB instead of whitespace
-""autocmd FileType make setlocal noexpandtab
-"" 
-""" Highlight cursor
-""highlight CursorLine ctermbg=8 cterm=NONE
-"
-let g:ctrlp_root_markers = ['.ctrlp']
-let g:ctrlp_working_path_mode = 'r'
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](.git|.hg|.svn|node_modules|zips|us-cities-small)$',
-  \ 'file': '\v\.(exe|so|dll|class|zip|jar|xsb)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
-
-let g:user_emmet_settings = {
-  \  'javascript.jsx' : {
-  \      'extends' : 'jsx',
-  \  },
-  \}
-
-let g:user_emmet_leader_key='<C-Z>'
-"
-"function! CloseHiddenBuffers()
-"    " Tableau pour memoriser la visibilite des buffers                                                                                      
-"    let visible = {}
-"    " Pour chaque onglet...
-"    for t in range(1, tabpagenr('$'))
-"        " Et pour chacune de ses fenetres...
-"        for b in tabpagebuflist(t)
-"            " On indique que le buffer est visible.
-"            let visible[b] = 1
-"        endfor
-"    endfor
-"    " Pour chaque numero de buffer possible...
-"    for b in range(1, bufnr('$'))
-"        " Si b est un numero de buffer valide et qu'il n'est pas visible, on le
-"        " supprime.
-"        if bufexists(b) && !has_key(visible, b)
-"            " On ferme donc tous les buffers qui ne valent pas 1 dans le tableau et qui
-"            " sont pourtant charges en memoire.
-"            execute 'bwipeout' b
-"        endif
-"    endfor
-"endfun
-"
-"fun! EditProjectDir()
-"  return ':e '.ProjectRootGuess().'/'
-"endf
-
 let g:netrw_liststyle=0         " thin (change to 3 for tree)
 let g:netrw_banner=1            " no banner
-"let g:netrw_altv=1              " open files on right
 let g:netrw_preview=1           " open previews vertically
 let g:netrw_sort_sequence = '[\/]$,*'
 
@@ -256,65 +173,6 @@ let g:netrw_sort_sequence = '[\/]$,*'
 " Allow netrw to remove non-empty local directories
 "
 let g:netrw_localrmdir='rm -r'
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""" RUN CURRENT FILE """""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Execute current file
-nmap <leader>r :call ExecuteFile()<CR>
-
-" Will attempt to execute the current file based on the `&filetype`
-" You need to manually map the filetypes you use most commonly to the
-" correct shell command.
-function! ExecuteFile()
-	let filetype_to_command = {
-		\   'javascript': 'node',
-		\   'python': 'python3',
-		\   'html': 'open',
-		\   'sh': 'sh'
-		\ }
-	let cmd = get(filetype_to_command, &filetype, &filetype)
-	call RunShellCommand(cmd." %s")
-endfunction
-
-" Enter any shell command and have the output appear in a new buffer
-" For example, to word count the current file:
-"
-"   :Shell wc %s
-"
-" Thanks to: http://vim.wikia.com/wiki/Display_output_of_shell_commands_in_new_window
-command! -complete=shellcmd -nargs=+ Shell call RunShellCommand(<q-args>)
-function! RunShellCommand(cmdline)
-	echo a:cmdline
-	let expanded_cmdline = a:cmdline
-	for part in split(a:cmdline, ' ')
-		if part[0] =~ '\v[%#<]'
-			let expanded_part = fnameescape(expand(part))
-			let expanded_cmdline = substitute(expanded_cmdline, part, expanded_part, '')
-		endif
-	endfor
-	botright new
-	setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
-	call setline(1, 'You entered:    ' . a:cmdline)
-	call setline(2, 'Expanded Form:  ' .expanded_cmdline)
-	call setline(3,substitute(getline(2),'.','=','g'))
-	execute '$read !'. expanded_cmdline
-	setlocal nomodifiable
-	1
-endfunction
-
-let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-" The Silver Searcher
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
 
 " bind \ (backward slash) to grep shortcut
 command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
