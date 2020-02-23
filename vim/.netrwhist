@@ -1,9 +1,4 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/home/shane/projects'
-let g:netrw_dirhist_2='/home/shane/projects/wpr-dataviz'
-let g:netrw_dirhist_3='/home/shane/projects'
-let g:netrw_dirhist_4='/home/shane/projects/wpr'
-let g:netrw_dirhist_5='/home/shane/projects/wpr/client'
-let g:netrw_dirhist_6='/home/shane/projects/wpr'
-let g:netrw_dirhist_7='/home/shane/projects'
+let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_1='/home/shane/dotfiles/vim'
+let g:netrw_dirhist_2='/home/shane/dotfiles'
