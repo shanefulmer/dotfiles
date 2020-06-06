@@ -3,6 +3,7 @@ call plug#begin()
 
 "Bundle 'christoomey/vim-tmux-navigator'
 
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'flazz/vim-colorschemes'
 Plug 'tpope/vim-vinegar'
@@ -69,6 +70,8 @@ colorscheme molokai
 
 let mapleader=","
 
+" Freed <C-l> in Netrw
+nmap <leader><leader><leader><leader><leader><leader>l <Plug>NetrwRefresh
 
 " fzf config
 nmap <Leader>t :Files<CR>
@@ -116,10 +119,15 @@ map <C-Tab> :tabnext<CR>
 map <C-S-Tab> :tabprevious<CR>
 
 " Easy window navigation
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+"map <C-h> <C-w>h
+"map <C-j> <C-w>j
+"map <C-k> <C-w>k
+"map <C-l> <C-w>l
+
 
 set guioptions-=r
 set go-=L
