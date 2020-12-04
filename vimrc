@@ -71,7 +71,7 @@ let mapleader=","
 
 
 " fzf config
-nmap <Leader>t :Files<CR>
+nmap <Leader>t :GFiles<CR>
 
 " Quickly edit/reload the vimrc file
 "nmap <silent> <leader>ev :e $MYVIMRC<CR>
